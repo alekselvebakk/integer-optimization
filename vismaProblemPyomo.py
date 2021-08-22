@@ -24,7 +24,13 @@ model.Obj = Objective(expr=
 
 model.constraint01 = Constraint(expr=
 model.x[0]+model.x[1]+model.x[2]+model.x[3]+model.x[4]+model.x[5]+model.x[6]+model.x[7]+model.x[8]+model.x[9]==45)
-model.constraint=Constraint(expr=model.x[0]!=model.x[1])
+model.constraint=Constraint(
+expr= 
+1000*(model.x[7]-model.x[4])
++100*(model.x[8]-model.x[7])
++10*(model.x[9]+model.x[5]+model.x[1]+model.x[6]-model.x[10])
++(model.x[4]+model.x[8]+2*model.x[3]- model.x[2])==0
+)
 
 
 
@@ -33,3 +39,5 @@ opt.solve(model)
 for i in range(1,N+1):
     print("***")
     print("x[",i,"]",value(model.x[i]))
+print("--------------------------------------------")
+print(value(model.Obj))
